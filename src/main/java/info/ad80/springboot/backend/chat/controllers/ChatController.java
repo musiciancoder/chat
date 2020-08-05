@@ -18,4 +18,12 @@ public class ChatController {
 		mensaje.setTexto("Recibido por el broker: " + mensaje.getTexto());
 			return mensaje;
 	}
+
+
+@MessageMapping("/escribiendo") // El cliente cada vez que escribe algo lo envía a /api/mensaje, porque configuramos el prefijo api en la clase WebSocketConfig
+@SendTo("/chat/escribiendo")
+public String estaEscribiendo(String username) {
+	return username.concat(" está escribiendo...");
+}
+
 }
